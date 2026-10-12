@@ -113,8 +113,7 @@ function App() {
 
     try {
       const username = form.username.trim().toLowerCase()
-      const internalEmail = `${username}@halaqat.local`
-
+      const internalEmail = `${username}@halaqat.example.com`
       const { data: authData, error: signUpError } = await supabase.auth.signUp({
         email: internalEmail,
         password: form.password,
@@ -138,15 +137,15 @@ function App() {
       const applicationData =
         invite.role === 'student'
           ? {
-              father_name: form.fatherName.trim(),
-              mother_name: form.motherName.trim(),
-              student_whatsapp: form.studentWhatsapp.trim(),
-              parent_whatsapp: form.parentWhatsapp.trim(),
-            }
+            father_name: form.fatherName.trim(),
+            mother_name: form.motherName.trim(),
+            student_whatsapp: form.studentWhatsapp.trim(),
+            parent_whatsapp: form.parentWhatsapp.trim(),
+          }
           : {
-              father_name: form.fatherName.trim(),
-              whatsapp: form.teacherWhatsapp.trim(),
-            }
+            father_name: form.fatherName.trim(),
+            whatsapp: form.teacherWhatsapp.trim(),
+          }
 
       const { error: requestError } = await supabase.rpc('submit_join_request', {
         p_token: token,
